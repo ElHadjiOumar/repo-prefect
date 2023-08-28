@@ -1,7 +1,7 @@
 # Importation de flow
 from prefect import flow
 
-# Importation des dependances de airbyte 
+# Importation des dépendances de airbyte
 from prefect_airbyte.server import AirbyteServer
 from prefect_airbyte.connections import AirbyteConnection
 from prefect_airbyte.flows import run_connection_sync
