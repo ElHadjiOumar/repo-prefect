@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional, Union
 import yaml
 from prefect import get_run_logger, task
 from prefect.utilities.filesystem import relative_path_to_current_platform
-from prefect_shell.commands import ShellOperation, shell_run_command
+from prefect_dbt.shell.commands import ShellOperation, shell_run_command
 from pydantic import Field, validator
 
 from prefect_dbt.credentials import DbtCliProfile
