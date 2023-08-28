@@ -4,22 +4,7 @@ from typing import Any, Dict, Optional, Union
 from prefect.blocks.core import Block
 from pydantic import Field
 
-from prefect_dbt.cli.configs import GlobalConfigs, TargetConfigs
-
-try:
-    from prefect_dbt.cli.configs.bigquery import BigQueryTargetConfigs
-except ImportError:
-    BigQueryTargetConfigs = None
-
-try:
-    from prefect_dbt.cli.configs.snowflake import SnowflakeTargetConfigs
-except ImportError:
-    SnowflakeTargetConfigs = None
-
-try:
-    from prefect_dbt.cli.configs.postgres import PostgresTargetConfigs
-except ImportError:
-    PostgresTargetConfigs = None
+from prefect_dbt.configs import GlobalConfigs, TargetConfigs
 
 
 class DbtCliProfile(Block):
@@ -48,28 +33,7 @@ class DbtCliProfile(Block):
         dbt_cli_profile = DbtCliProfile.load("BLOCK_NAME").get_profile()
         ```
 
-        Get a dbt Snowflake profile from DbtCliProfile by using SnowflakeTargetConfigs:
-        ```python
-        from prefect_dbt.cli import DbtCliProfile
-        from prefect_dbt.cli.configs import SnowflakeTargetConfigs
-        from prefect_snowflake.credentials import SnowflakeCredentials
-        from prefect_snowflake.database import SnowflakeConnector
-
-        credentials = SnowflakeCredentials(
-            user="user",
-            password="password",
-            account="account.region.aws",
-            role="role",
-        )
-        connector = SnowflakeConnector(
-            schema="public",
-            database="database",
-            warehouse="warehouse",
-            credentials=credentials,
-        )
-        target_configs = SnowflakeTargetConfigs(
-            connector=connector
-        )
+        
         dbt_cli_profile = DbtCliProfile(
             name="jaffle_shop",
             target="dev",
@@ -81,7 +45,7 @@ class DbtCliProfile(Block):
         Get a dbt Redshift profile from DbtCliProfile by using generic TargetConfigs:
         ```python
         from prefect_dbt.cli import DbtCliProfile
-        from prefect_dbt.cli.configs import GlobalConfigs, TargetConfigs
+        from configs import GlobalConfigs, TargetConfigs
 
         target_configs_extras = dict(
             host="hostname.region.redshift.amazonaws.com",
@@ -116,10 +80,7 @@ class DbtCliProfile(Block):
         default=..., description="The default target your dbt project will use."
     )
     target_configs: Union[
-        SnowflakeTargetConfigs,
-        BigQueryTargetConfigs,
-        PostgresTargetConfigs,
-        TargetConfigs,
+        TargetConfigs
     ] = Field(
         default=...,
         description=(

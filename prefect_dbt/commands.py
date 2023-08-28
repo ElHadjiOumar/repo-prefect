@@ -9,7 +9,7 @@ from prefect.utilities.filesystem import relative_path_to_current_platform
 from prefect_shell.commands import ShellOperation, shell_run_command
 from pydantic import Field, validator
 
-from prefect_dbt.cli.credentials import DbtCliProfile
+from prefect_dbt.credentials import DbtCliProfile
 
 
 @task
@@ -55,7 +55,7 @@ async def trigger_dbt_cli_command(
         Execute `dbt debug` with a pre-populated profiles.yml.
         ```python
         from prefect import flow
-        from prefect_dbt.cli.commands import trigger_dbt_cli_command
+        from commands import trigger_dbt_cli_command
 
         @flow
         def trigger_dbt_cli_command_flow():
@@ -68,28 +68,11 @@ async def trigger_dbt_cli_command(
         Execute `dbt debug` without a pre-populated profiles.yml.
         ```python
         from prefect import flow
-        from prefect_dbt.cli.credentials import DbtCliProfile
-        from prefect_dbt.cli.commands import trigger_dbt_cli_command
-        from prefect_dbt.cli.configs import SnowflakeTargetConfigs
-        from prefect_snowflake.credentials import SnowflakeCredentials
+        from credentials import DbtCliProfile
+        from commands import trigger_dbt_cli_command
 
         @flow
         def trigger_dbt_cli_command_flow():
-            credentials = SnowflakeCredentials(
-                user="user",
-                password="password",
-                account="account.region.aws",
-                role="role",
-            )
-            connector = SnowflakeConnector(
-                schema="public",
-                database="database",
-                warehouse="warehouse",
-                credentials=credentials,
-            )
-            target_configs = SnowflakeTargetConfigs(
-                connector=connector
-            )
             dbt_cli_profile = DbtCliProfile(
                 name="jaffle_shop",
                 target="dev",
@@ -198,17 +181,7 @@ class DbtCoreOperation(ShellOperation):
 
         Execute short-lasting dbt debug and list with a custom DbtCliProfile.
         ```python
-        from prefect_dbt import DbtCoreOperation, DbtCliProfile
-        from prefect_dbt.cli.configs import SnowflakeTargetConfigs
-        from prefect_snowflake import SnowflakeConnector
 
-        snowflake_connector = await SnowflakeConnector.load("snowflake-connector")
-        target_configs = SnowflakeTargetConfigs(connector=snowflake_connector)
-        dbt_cli_profile = DbtCliProfile(
-            name="jaffle_shop",
-            target="dev",
-            target_configs=target_configs,
-        )
         dbt_init = DbtCoreOperation(
             commands=["dbt debug", "dbt list"],
             dbt_cli_profile=dbt_cli_profile,
