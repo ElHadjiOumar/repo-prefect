@@ -1,5 +1,5 @@
 # Importation de flow
-from prefect import flow
+from prefect import Flow,task
 
 # Importation des dépendances de airbyte
 from prefect_airbyte.server import AirbyteServer
@@ -16,8 +16,8 @@ airbyte_connection_montreal = AirbyteConnection.load("airbyte-connection-montrea
 airbyte_connection_paris = AirbyteConnection.load("airbyte-connection-paris",validate=False)
 airbyte_connection_rennes = AirbyteConnection.load("airbyte-connection-rennes",validate=False)
 
-@flow(name="flow_airbyte2")
-def airbyte_syncs():
+@task
+def airbyte_task():
     run_connection_sync(airbyte_connection_bordeaux)
 
     run_connection_sync(airbyte_connection_montreal)
@@ -26,8 +26,8 @@ def airbyte_syncs():
 
     run_connection_sync(airbyte_connection_rennes)
 
-@flow(name="flow_dbt")
-def dbt_flow() -> str:
+@task
+def dbt_task() -> str:
     result = DbtCoreOperation(
         commands=["dbt run --models onepointparis onepointrennes onepointbordeaux onepointmontreal --target dev"],
         project_dir=r"./dbt_code",
@@ -35,8 +35,12 @@ def dbt_flow() -> str:
     )
     return result.run()
 
+with Flow("flow_combo") as flow_combo:
+    airbyte_result = airbyte_task()
+    dbt_result = dbt_task()
+    dbt_result.set_upstream(airbyte_result)
+
 if __name__ == "__main__":
-    airbyte_syncs()
-    dbt_flow()
+    flow_combo.run()
 
 
