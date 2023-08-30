@@ -7,7 +7,7 @@ from prefect_airbyte.connections import AirbyteConnection
 from prefect_airbyte.flows import run_connection_sync
 
 # Importation des dependances de DBT 
-from prefect_dbt.commands import DbtCoreOperation
+from prefect_dbt.cli.commands import DbtCoreOperation
 
 server = AirbyteServer.load("airbyte-server")
 
