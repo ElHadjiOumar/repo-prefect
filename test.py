@@ -16,7 +16,7 @@ airbyte_connection_montreal = AirbyteConnection.load("airbyte-connection-montrea
 airbyte_connection_paris = AirbyteConnection.load("airbyte-connection-paris",validate=False)
 airbyte_connection_rennes = AirbyteConnection.load("airbyte-connection-rennes",validate=False)
 
-@flow(name="flow_airbyte")
+@flow(name="flow_airbyte2")
 def airbyte_syncs():
     run_connection_sync(airbyte_connection_bordeaux)
 
