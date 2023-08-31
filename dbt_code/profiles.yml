@@ -27,7 +27,7 @@ dbt_code:
       password:  # required if method is ldap or kerberos
       catalog: clickhouse
       host: http://20.19.149.13
-      port: 8123
+      port: 8080
       schema: gold  # a faire essayer d'envoyer vers silver
 
 

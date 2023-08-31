@@ -22,4 +22,7 @@ sources:
     database: lakehouse
     schema: silver
     tables:
-      - name: weathersil
+      - name: bordeauxsilver
+      - name: parissilver
+      - name: montrealsilver
+      - name: rennessilver
