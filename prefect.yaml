@@ -20,17 +20,17 @@ pull:
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
-- name: deploy-airbyte
+- name: deploiement_flow_airbyte_dbt
   version: null
   tags: []
   description: null
-  entrypoint: test.py:airbyte_syncs
+  entrypoint: test.py:flow_combo
   parameters: {}
   work_pool:
     name: workpool-onepoint
     work_queue_name: null
     job_variables: {}
   schedule:
-    cron: '* * * * *'
+    cron: '*/3 * * * *'
     timezone: Europe/Paris
     day_or: true

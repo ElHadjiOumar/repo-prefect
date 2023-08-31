@@ -32,7 +32,7 @@ with bronze_data  as (
   json_extract_scalar(_airbyte_data, '$.id') AS city_id,
   json_extract_scalar(_airbyte_data, '$.name') AS city_name,
   json_extract_scalar(_airbyte_data, '$.cod') AS response_code
-   FROM  {{ ref('onepointparis') }}
+   FROM  {{ ref('onepointrennes') }}
   WHERE
   json_extract_scalar(_airbyte_data, '$.coord.lon') IS NOT NULL
   AND json_extract_scalar(_airbyte_data, '$.coord.lat') IS NOT NULL

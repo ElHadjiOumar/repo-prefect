@@ -24,7 +24,7 @@ airbyte_connection_rennes = AirbyteConnection.load("airbyte-connection-rennes", 
 @task
 def dbt_task():
     result = DbtCoreOperation(
-        commands=["dbt run --models onepointparis onepointrennes onepointbordeaux onepointmontreal --target dev"],
+        commands=["dbt run --models onepointparis onepointrennes onepointbordeaux onepointmontreal --target dev","dbt run --models bordeauxsilver montrealsilver parissilver rennessilver--target silver"],
         project_dir=r"./dbt_code",
         profiles_dir=r"./dbt_code",
     )

@@ -9,6 +9,14 @@ sources:
       - name: onepointbordeaux
       - name: onepointmontreal
 
+  - name: sourcebronze
+    database: lakehouse
+    schema: bronze
+    tables:
+      - name: onepointparis
+      - name: onepointrennes
+      - name: onepointbordeaux
+      - name: onepointmontreal
 
   - name: sourcesilver
     database: lakehouse
