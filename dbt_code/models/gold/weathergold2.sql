@@ -57,6 +57,13 @@ SELECT
   main_pressure,
   clouds,
   wind_speed,
-  city_name
+  city_name,
+  CASE 
+    WHEN city_name = 'Bordeaux' THEN 'FR-NA'
+    WHEN city_name = 'Montreal' THEN 'CA-QC'
+    WHEN city_name = 'Paris' THEN 'FR-75'
+    WHEN city_name = 'Rennes' THEN 'FR-BRE'
+    ELSE 'INCONNU'
+  END AS iso_code
 FROM standardized_data
 ORDER BY dt
