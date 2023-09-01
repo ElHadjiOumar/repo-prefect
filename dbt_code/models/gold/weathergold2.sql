@@ -59,10 +59,10 @@ SELECT
   wind_speed,
   city_name,
   CASE 
-    WHEN city_name = 'Bordeaux' THEN 'FR-NA'
+    WHEN city_name = 'Bordeaux' THEN 'FR-33'
     WHEN city_name = 'Montreal' THEN 'CA-QC'
-    WHEN city_name = 'Paris' THEN 'FR-75'
-    WHEN city_name = 'Rennes' THEN 'FR-BRE'
+    WHEN city_name = 'Paris' THEN 'FR-IDF'
+    WHEN city_name = 'Rennes' THEN 'FR-35'
     ELSE 'INCONNU'
   END AS iso_code
 FROM standardized_data
