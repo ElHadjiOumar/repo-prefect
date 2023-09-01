@@ -8,7 +8,7 @@ WITH standardized_data AS (
     CAST(main_humidity) AS DOUBLE,
   CAST(main_pressure) AS DOUBLE,
   CAST(clouds) AS DOUBLE,
-  CAST(wind_speed) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE
   FROM  {{ source('sourcesilver','bordeauxsilver') }}
   
   UNION ALL
@@ -20,7 +20,7 @@ WITH standardized_data AS (
     CAST(main_humidity) AS DOUBLE,
   CAST(main_pressure) AS DOUBLE,
   CAST(clouds) AS DOUBLE,
-  CAST(wind_speed) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE
   FROM  {{ source('sourcesilver','montrealsilver') }}
 
   
@@ -33,7 +33,7 @@ WITH standardized_data AS (
     CAST(main_humidity) AS DOUBLE,
   CAST(main_pressure) AS DOUBLE,
   CAST(clouds) AS DOUBLE,
-  CAST(wind_speed) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE
   FROM  {{ source('sourcesilver','parissilver') }}
 
   
@@ -46,7 +46,7 @@ WITH standardized_data AS (
     CAST(main_humidity) AS DOUBLE,
   CAST(main_pressure) AS DOUBLE,
   CAST(clouds) AS DOUBLE,
-  CAST(wind_speed) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE
   FROM  {{ source('sourcesilver','rennessilver') }}
 
 )
