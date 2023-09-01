@@ -55,6 +55,6 @@ SELECT
     r.wind_speed_rennes,
     r.city_name AS city_name_rennes
 FROM silver_bordeaux b
-JOIN silver_montreal m ON b.dt = m.dt
-JOIN silver_paris p ON b.dt = p.dt
-JOIN silver_rennes r ON b.dt = r.dt
+FULL JOIN silver_montreal m ON b.dt = m.dt
+FULL JOIN silver_paris p ON b.dt = p.dt
+FULL JOIN silver_rennes r ON b.dt = r.dt
