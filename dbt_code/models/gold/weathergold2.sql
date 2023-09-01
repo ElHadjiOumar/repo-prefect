@@ -5,10 +5,10 @@ WITH standardized_data AS (
     'Bordeaux' AS city_name,
     dt,
     main_temp,
-    main_humidity,
-    main_pressure,
-    clouds,
-    wind_speed
+    CAST(main_humidity) AS DOUBLE,
+  CAST(main_pressure) AS DOUBLE,
+  CAST(clouds) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE,
   FROM  {{ source('sourcesilver','bordeauxsilver') }}
   
   UNION ALL
@@ -17,10 +17,10 @@ WITH standardized_data AS (
     'Montreal' AS city_name,
     dt,
     main_temp,
-    main_humidity,
-    main_pressure,
-    clouds,
-    wind_speed
+    CAST(main_humidity) AS DOUBLE,
+  CAST(main_pressure) AS DOUBLE,
+  CAST(clouds) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE,
   FROM  {{ source('sourcesilver','montrealsilver') }}
 
   
@@ -30,10 +30,10 @@ WITH standardized_data AS (
     'Paris' AS city_name,
     dt,
     main_temp,
-    main_humidity,
-    main_pressure,
-    clouds,
-    wind_speed
+    CAST(main_humidity) AS DOUBLE,
+  CAST(main_pressure) AS DOUBLE,
+  CAST(clouds) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE,
   FROM  {{ source('sourcesilver','parissilver') }}
 
   
@@ -43,20 +43,20 @@ WITH standardized_data AS (
     'Rennes' AS city_name,
     dt,
     main_temp,
-    main_humidity,
-    main_pressure,
-    clouds,
-    wind_speed
+    CAST(main_humidity) AS DOUBLE,
+  CAST(main_pressure) AS DOUBLE,
+  CAST(clouds) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE,
   FROM  {{ source('sourcesilver','rennessilver') }}
 
 )
 SELECT 
   dt,
   main_temp,
-  CAST(main_humidity) AS DOUBLE,
-  CAST(main_pressure) AS DOUBLE,
-  CAST(clouds) AS DOUBLE,
-  CAST(wind_speed) AS DOUBLE,
+  Cmain_humidity,
+  main_pressure,
+  clouds,
+  wind_speed,
   city_name
 FROM standardized_data
 ORDER BY dt
