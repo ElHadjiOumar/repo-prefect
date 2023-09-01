@@ -53,10 +53,10 @@ WITH standardized_data AS (
 SELECT 
   dt,
   main_temp,
-  main_humidity,
-  main_pressure,
-  clouds,
-  wind_speed,
+  CAST(main_humidity) AS DOUBLE,
+  CAST(main_pressure) AS DOUBLE,
+  CAST(clouds) AS DOUBLE,
+  CAST(wind_speed) AS DOUBLE,
   city_name
 FROM standardized_data
 ORDER BY dt
