@@ -61,7 +61,7 @@ SELECT
   CASE 
     WHEN city_name = 'Bordeaux' THEN 'FR-33'
     WHEN city_name = 'Montreal' THEN 'CA-QC'
-    WHEN city_name = 'Paris' THEN 'FR-IDF'
+    WHEN city_name = 'Paris' THEN 'FR-75'
     WHEN city_name = 'Rennes' THEN 'FR-35'
     ELSE 'INCONNU'
   END AS iso_code
