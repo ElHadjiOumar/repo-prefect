@@ -20,7 +20,7 @@ pull:
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
-- name: deploiement-combo
+- name: deploiement prefect
   version: null
   tags: []
   description: null
