@@ -7,7 +7,7 @@ dbt_code:
       user: Trino
       password:  # required if method is ldap or kerberos
       catalog: lakehouse
-      host: http://20.19.149.13
+      host: http://20.19.192.178
       port: 8080
       schema: bronze  # a faire essayer d'envoyer vers silver
 
@@ -17,7 +17,7 @@ dbt_code:
       user: Trino
       password:  # required if method is ldap or kerberos
       catalog: lakehouse
-      host: http://20.19.149.13
+      host: http://20.19.192.178
       port: 8080
       schema: silver 
     gold:
@@ -26,7 +26,7 @@ dbt_code:
       user: Trino
       password:  # required if method is ldap or kerberos
       catalog: clickhouse
-      host: http://20.19.149.13
+      host: http://20.19.192.178
       port: 8080
       schema: gold  # a faire essayer d'envoyer vers silver
 
