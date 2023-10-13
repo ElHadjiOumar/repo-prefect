@@ -36,7 +36,7 @@ with source_data as (
   json_extract_scalar(_airbyte_data, '$.id') AS city_id,
   json_extract_scalar(_airbyte_data, '$.name') AS city_name,
   json_extract_scalar(_airbyte_data, '$.cod') AS response_code
-    FROM  {{ source('source', 'onepointparis') }}
+    FROM  {{ ref('onepointparisunion') }}
     {% if is_incremental() %}
     WHERE
     json_extract_scalar(_airbyte_data, '$.coord.lon') IS NOT NULL
