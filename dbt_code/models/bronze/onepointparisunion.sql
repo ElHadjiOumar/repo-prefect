@@ -6,7 +6,7 @@ with historical as (
         'historical' as _dbt_lambda_view_source,
         '{{ run_started_at }}' as _dbt_last_run_at
     from {{ ref('onepointparisincr') }}
-    where _airbyte_emitted_at < '{{ run_started_at }}'
+    where dt < '{{ run_started_at }}'
 ),
 new as (
     select
@@ -14,7 +14,7 @@ new as (
         'new' as _dbt_lambda_view_source,
         '{{ run_started_at }}' as _dbt_last_run_at
     from {{ ref('onepointpariscurrent') }}
-    where _airbyte_emitted_at >= '{{ run_started_at }}'
+    where dt >= '{{ run_started_at }}'
 ),
 unioned as (
     select * from new
